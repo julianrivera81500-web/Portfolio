@@ -84,3 +84,40 @@ document.querySelectorAll('.projects-grid').forEach(grid => {
     });
   });
 });
+/* ===== Custom cursor ===== */
+(() => {
+  // Ne pas afficher sur écrans tactiles
+  if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return;
+
+  const dot = document.createElement('div');
+  dot.className = 'cursor';
+  document.body.appendChild(dot);
+
+  const move = (e) => {
+    dot.style.left = e.clientX + 'px';
+    dot.style.top  = e.clientY + 'px';
+    dot.classList.remove('hidden');
+  };
+
+  const hide = () => dot.classList.add('hidden');
+
+  window.addEventListener('mousemove', move, { passive: true });
+  window.addEventListener('mouseenter', () => dot.classList.remove('hidden'));
+  window.addEventListener('mouseleave', hide);
+
+  window.addEventListener('mousedown', () => dot.classList.add('click'));
+  window.addEventListener('mouseup',   () => dot.classList.remove('click'));
+})();
+/* Survol: grossit un peu sur les éléments interactifs */
+(() => {
+  const dot = document.querySelector('.cursor');
+  if (!dot) return;
+  const interactive = 'a,button,.btn,input,textarea,select,label,[role="button"],summary';
+
+  document.addEventListener('mouseover', (e) => {
+    dot.classList.toggle('hover', !!e.target.closest(interactive));
+  });
+  document.addEventListener('mouseout', () => {
+    dot.classList.remove('hover');
+  });
+})();

@@ -284,3 +284,109 @@ a{color:inherit;text-decoration:none}
   cursor: pointer;
   user-select: none;
 }
+/* ===== Matériel (cartes avec images de tailles différentes) ===== */
+.equip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media (max-width:900px){.equip-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.equip-grid{grid-template-columns:1fr}}
+
+.equip-card .equip-media{
+  border-bottom:1px solid #eee;
+  background:#fff;
+}
+.equip-media-inner{
+  /* à tester : carrés uniformes */
+  width:100%;
+  aspect-ratio:1/1;          /* garde l’uniformité entre cartes */
+  display:grid;
+  place-items:end center;     /* colle l’image vers le bas -> moins d’espace visuel */
+  background:var(--card);
+  padding:6px;                /* un petit breathing */
+}
+.equip-media img{
+  width:100%;
+  height:100%;
+  object-fit:contain;         /* jamais de recadrage */
+  object-position:bottom center; /* pousse l’espace résiduel vers le haut */
+  display:block;
+}
+/* ===== Compétences (icônes) ===== */
+.skills-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:16px;
+}
+@media (max-width:1000px){ .skills-grid{grid-template-columns:repeat(4,1fr)} }
+@media (max-width:760px){ .skills-grid{grid-template-columns:repeat(3,1fr)} }
+@media (max-width:520px){ .skills-grid{grid-template-columns:repeat(2,1fr)} }
+
+.skill-card{
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  text-align:center;
+  padding:14px 12px;
+  transition:transform .12s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.skill-card:hover{
+  transform:translateY(-2px);
+  border-color:#e3e7f2;
+  box-shadow:0 14px 32px rgba(17,18,24,.10);
+}
+
+.skill-icon{
+  width:72px; height:72px;
+  margin:4px auto 10px;
+}
+.skill-icon img{
+  width:100%; height:100%; object-fit:contain; display:block;
+  filter:grayscale(20%); opacity:.95; transition:transform .15s ease, filter .15s ease, opacity .15s ease;
+}
+.skill-card:hover .skill-icon img{
+  filter:none; opacity:1; transform:scale(1.04);
+}
+
+.skill-name{font-size:.98rem; margin:.2rem 0 0; font-weight:600}
+.skill-note{margin:.25rem 0 0; color:#4b4f5c; font-size:.86rem}
+/* ===== Custom cursor (point qui inverse la couleur) ===== */
+.cursor {
+  position: fixed;
+  left: 0; top: 0;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  pointer-events: none;             /* ne bloque pas les clics */
+  z-index: 10000;                   /* au-dessus du contenu et de la lightbox */
+  background: #fff;                 /* difference avec blanc => inversion */
+  mix-blend-mode: difference;       /* invert local */
+  transform: translate(-50%, -50%); /* centre sur la pointe */
+  transition: transform .12s ease, opacity .15s ease;
+  opacity: .9;
+}
+
+.cursor.click {                     /* petit grossissement au clic */
+  transform: translate(-50%, -50%) scale(1.35);
+}
+
+.cursor.hidden { opacity: 0; }
+
+/* Option : pour remplacer le curseur système (sinon laisse commenté)
+body { cursor: none; }
+*/
+/* Masquer le curseur natif partout */
+html, body, a, button, input, textarea, select, label, [role="button"], summary {
+  cursor: none !important;
+}
+
+/* Petit feedback visuel au survol d’éléments cliquables */
+.cursor.hover {
+  transform: translate(-50%, -50%) scale(1.15);
+}
+/* Icônes sociales (footer + contact) */
+.socials a{ display:grid; place-items:center; }
+.socials img{ width:20px; height:20px; display:block; }
+
+.contact-list a.social-icon{
+  display:inline-grid; place-items:center;
+  width:36px; height:36px; border:1px solid #eee; border-radius:10px; background:#fff;
+}
+.contact-list a.social-icon img{ width:18px; height:18px; }
