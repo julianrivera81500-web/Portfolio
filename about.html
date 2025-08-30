@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>À propos — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html"><span class="brand-mark">JR</span><span class="brand-name">Portfolio</span></a>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <nav class="site-nav" aria-label="Navigation principale">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="about.html" class="active">À propos</a></li>
+          <li><a href="projects.html">Projets</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- BIO -->
+    <section class="section">
+      <div class="container reveal">
+        <h1 class="section-title">À propos</h1>
+        <p>
+          Passionné par l’audiovisuel depuis mon adolescence, j’ai commencé par le montage vidéo sur Vegas Pro et 
+          je me suis formé en autodidacte à Premiere Pro, After Effects et DaVinci Resolve.  
+          Équipé d’un Sony A7 IV, je réalise aujourd’hui des aftermovies, clips, reportages et shootings photo.  
+          Je suis curieux, créatif et toujours motivé pour relever de nouveaux défis.
+        </p>
+      </div>
+    </section>
+
+    <!-- COMPÉTENCES -->
+    <section class="section">
+      <div class="container reveal">
+        <h2 class="section-title">Compétences</h2>
+        <ul class="hero-badges">
+          <li>Premiere Pro</li>
+          <li>After Effects</li>
+          <li>DaVinci Resolve</li>
+          <li>Photoshop</li>
+          <li>Lightroom</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- EXPÉRIENCES -->
+    <section class="section">
+      <div class="container reveal">
+        <h2 class="section-title">Expériences</h2>
+        <div class="grid cards">
+          <article class="card">
+            <div class="card-body">
+              <h3 class="card-title">Stage — BL Motion</h3>
+              <p class="card-text">Participation à la réalisation d’aftermovies et vidéos promotionnelles : dérushage, montage, sound design, étalonnage.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-body">
+              <h3 class="card-title">Bénévolat — Soirées & concerts</h3>
+              <p class="card-text">Création d’aftermovies et reportages photo pour des événements musicaux.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-body">
+              <h3 class="card-title">Projets freelance</h3>
+              <p class="card-text">Séances photo pour une marque de vêtements, création de clips et teasers pour artistes.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand" href="index.html"><span class="brand-mark">JR</span><span class="brand-name">Portfolio</span></a>
+        <p class="muted small">© <span id="year"></span> Tous droits réservés.</p>
+      </div>
+      <ul class="socials">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">YouTube</a></li>
+        <li><a href="#">LinkedIn</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

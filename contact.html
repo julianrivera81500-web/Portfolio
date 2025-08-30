@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .contact-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:28px}
+    .contact-card{background:#fff;border:1px solid #eee;border-radius:16px;box-shadow:var(--shadow);padding:18px}
+    .contact-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+    .contact-list li{display:flex;gap:10px;align-items:center}
+    .contact-list a{color:var(--accent);}
+
+    form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    form .row-1{grid-template-columns:1fr}
+    label{font-weight:600;display:block;margin:8px 0 6px}
+    input, textarea{
+      width:100%; padding:.8rem 1rem; border:1px solid #e3e5ee; border-radius:12px;
+      background:#fff; font:16px/1.5 Poppins, system-ui;
+    }
+    textarea{min-height:140px; resize:vertical}
+    .form-actions{display:flex;gap:12px;align-items:center;margin-top:12px}
+    .note{font-size:.9rem;color:var(--muted)}
+    .ok{color:#0a7d28;font-weight:600}
+    .err{color:#b00020;font-weight:600}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html"><span class="brand-mark">JR</span><span class="brand-name">Portfolio</span></a>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <nav class="site-nav" aria-label="Navigation principale">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="projects.html">Projets</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <h1 class="section-title">Contact</h1>
+      <p class="muted reveal">Une idée, un projet, une collaboration ? Écris-moi.</p>
+
+      <div class="contact-wrap">
+        <!-- Infos -->
+        <aside class="contact-card reveal">
+          <h2 style="margin-top:0">Coordonnées</h2>
+          <ul class="contact-list">
+            <li>📧 <a href="mailto:julianrivera.81500@gmail.com">julianrivera.81500@gmail.com</a></li>
+            <li>📞 <a href="tel:+33659854406">+33 6 59 85 44 06</a></li>
+            <li>📍 Toulouse, France</li>
+            <li>🔗 <a href="#" target="_blank" rel="noopener">Instagram</a></li>
+            <li>🔗 <a href="#" target="_blank" rel="noopener">YouTube</a></li>
+            <li>🔗 <a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+          </ul>
+          <p class="note" style="margin-top:12px">Réponse sous 24–48h.</p>
+        </aside>
+
+        <!-- Formulaire -->
+        <section class="contact-card reveal">
+          <h2 style="margin-top:0">Écris-moi</h2>
+          <form id="contact-form">
+            <div class="row">
+              <div>
+                <label for="name">Nom</label>
+                <input type="text" id="name" name="name" placeholder="Votre nom" required />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="votremail@email.com" required />
+              </div>
+            </div>
+            <div class="row">
+              <div>
+                <label for="phone">Téléphone (optionnel)</label>
+                <input type="tel" id="phone" name="phone" placeholder="+33 ..." />
+              </div>
+              <div>
+                <label for="subject">Objet</label>
+                <input type="text" id="subject" name="subject" placeholder="Objet de votre message" required />
+              </div>
+            </div>
+            <div class="row row-1">
+              <div>
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Dites-m’en plus sur votre projet…" required></textarea>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn primary">Envoyer</button>
+              <span id="form-status" class="note"></span>
+            </div>
+            <p class="note">Vos informations ne sont utilisées que pour vous répondre.</p>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand" href="index.html"><span class="brand-mark">JR</span><span class="brand-name">Portfolio</span></a>
+        <p class="muted small">© <span id="year"></span> Tous droits réservés.</p>
+      </div>
+      <ul class="socials">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">YouTube</a></li>
+        <li><a href="#">LinkedIn</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- EmailJS SDK (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // 1) Initialise EmailJS (remplace "YOUR_PUBLIC_KEY")
+    emailjs.init("YOUR_PUBLIC_KEY");
+
+    const form = document.getElementById('contact-form');
+    const statusEl = document.getElementById('form-status');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      statusEl.textContent = "Envoi en cours…";
+      statusEl.className = "note";
+
+      // 2) Prépare les variables du template
+      const data = {
+        name: form.name.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        subject: form.subject.value,
+        message: form.message.value
+      };
+
+      try {
+        // 3) Appelle EmailJS (remplace service_id et template_id)
+        await emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", data);
+
+        statusEl.textContent = "Message envoyé, merci !";
+        statusEl.className = "note ok";
+        form.reset();
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = "Une erreur est survenue. Réessayez ou contactez-moi par email.";
+        statusEl.className = "note err";
+      }
+    });
+  </script>
+</body>
+</html>

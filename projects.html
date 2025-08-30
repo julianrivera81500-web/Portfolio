@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio — Vidéos & Photos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html"><span class="brand-mark">JR</span><span class="brand-name">Portfolio</span></a>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <nav class="site-nav" aria-label="Navigation principale">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="projects.html" class="active">Portfolio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- SECTION VIDÉOS -->
+<section class="section reveal">
+  <h1 class="section-title">Vidéos</h1>
+  <div class="projects-grid">
+
+    <!-- Vidéo verticale -->
+    <div class="project-item">
+      <div class="project-media">
+        <video src="assets/video1.mp4" class="video-vertical" muted loop controls></video>
+      </div>
+      <div class="project-body">
+        <h3 class="project-title">Aftermovie Vertical</h3>
+        <p class="project-text">Format 9:16 pour réseaux sociaux.</p>
+      </div>
+    </div>
+
+    <!-- Vidéo verticale supplémentaire -->
+    <div class="project-item">
+      <div class="project-media">
+        <video src="assets/video3.mp4" class="video-vertical" muted loop controls></video>
+      </div>
+      <div class="project-body">
+        <h3 class="project-title">Interview Portrait</h3>
+        <p class="project-text">Captation verticale pour TikTok/Instagram.</p>
+      </div>
+    </div>
+
+    <!-- Vidéo horizontale -->
+    <div class="project-item">
+      <div class="project-media">
+        <video src="assets/video2.mp4" class="video-vertical" muted loop controls></video>
+      </div>
+      <div class="project-body">
+        <h3 class="project-title">Clip Musical</h3>
+        <p class="project-text">Réalisation et post-production pour un artiste émergent.</p>
+      </div>
+    </div>
+
+    <!-- Vidéo horizontale supplémentaire -->
+    <div class="project-item">
+      <div class="project-media">
+        <video src="assets/video4.mp4" class="video-horizontal" muted loop controls></video>
+      </div>
+      <div class="project-body">
+        <h3 class="project-title">Aftermovie Festival</h3>
+        <p class="project-text">Captation 16:9 avec montage dynamique et étalonnage.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SECTION PHOTOS -->
+<section class="section reveal">
+  <h1 class="section-title">Albums Photos</h1>
+  <div class="projects-grid">
+    
+    <!-- Album Soirée / Concert -->
+    <div class="project-item">
+      <a href="soiree_concert.html" class="project-media">
+        <img src="assets/album-soiree_concert.jpg" alt="Album album-soiree_concert">
+      </a>
+      <div class="project-body">
+        <h3 class="project-title"><a href="soiree_concert.html">Soirée / Concert</a></h3>
+        <p class="project-text">Explorations urbaines et ambiances sombres.</p>
+      </div>
+    </div>
+
+    <!-- Album Voyage -->
+    <div class="project-item">
+      <a href="voyage.html" class="project-media">
+        <img src="assets/album-voyage.jpg" alt="Album Voyage">
+      </a>
+      <div class="project-body">
+        <h3 class="project-title"><a href="voyage.html">Voyage</a></h3>
+        <p class="project-text">Paysages, rencontres et découvertes culturelles.</p>
+      </div>
+    </div>
+
+    <!-- Album Shooting -->
+    <div class="project-item">
+      <a href="shooting.html" class="project-media">
+        <img src="assets/album-shooting.jpg" alt="Album Shooting">
+      </a>
+      <div class="project-body">
+        <h3 class="project-title"><a href="shooting.html">Shooting</a></h3>
+        <p class="project-text">Portraits créatifs et collaborations mode.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand" href="index.html"><span class="brand-mark">JR</span><span class="brand-name">Portfolio</span></a>
+        <p class="muted small">© <span id="year"></span> Tous droits réservés.</p>
+      </div>
+      <ul class="socials">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">YouTube</a></li>
+        <li><a href="#">LinkedIn</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

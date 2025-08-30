@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio — Vidéaste & Photographe</title>
+  <meta name="description" content="Portfolio clair et moderne d'un vidéaste & photographe : projets, à propos, et contact." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html"><span class="brand-mark">JR</span><span class="brand-name">Portfolio</span></a>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <nav class="site-nav" aria-label="Navigation principale">
+        <ul>
+          <li><a href="index.html" class="active">Accueil</a></li>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="projects.html">Projets</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text reveal">
+          <h1 class="hero-title"><span class="accent">Vidéaste</span> & Photographe</h1>
+          <p class="hero-subtitle">Création de films, aftermovies et reportages photo — montage, étalonnage & effets visuels.</p>
+          <div class="hero-cta">
+            <a href="projects.html" class="btn primary">Voir mes projets</a>
+            <a href="about.html" class="btn ghost">En savoir plus</a>
+          </div>
+          <ul class="hero-badges">
+            <li>Premiere Pro</li>
+            <li>After Effects</li>
+            <li>DaVinci Resolve</li>
+            <li>Photoshop</li>
+            <li>Lightroom</li>
+          </ul>
+        </div>
+        <div class="hero-media reveal" aria-hidden="true">
+          <div class="hero-photo">
+            <img src="assets/hero.jpg" alt="Portrait ou photo de tournage">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Aperçu projets -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="section-title">Projets en avant</h2>
+          <p class="muted">Un aperçu de mes travaux récents. Retrouvez la galerie complète dans la page Projets.</p>
+        </div>
+        <div class="grid cards reveal">
+          <article class="card">
+            <a href="projects.html" class="card-media">
+              <img src="assets/shot1.jpg" alt="Aperçu projet 1">
+            </a>
+            <div class="card-body">
+              <h3 class="card-title">Aftermovie — Soirée Techno</h3>
+              <p class="card-text">Montage rythmique, étalonnage cinéma, SFX légers.</p>
+            </div>
+          </article>
+          <article class="card">
+            <a href="projects.html" class="card-media">
+              <img src="assets/shot2.jpg" alt="Aperçu projet 2">
+            </a>
+            <div class="card-body">
+              <h3 class="card-title">Clip — Artiste émergent</h3>
+              <p class="card-text">Direction photo, colorimétrie et VFX subtils.</p>
+            </div>
+          </article>
+          <article class="card">
+            <a href="projects.html" class="card-media">
+              <img src="assets/shot3.jpg" alt="Aperçu projet 3">
+            </a>
+            <div class="card-body">
+              <h3 class="card-title">Reportage — Marque mode</h3>
+              <p class="card-text">Shooting lookbook + mini-teaser social.</p>
+            </div>
+          </article>
+        </div>
+        <div class="center">
+          <a href="projects.html" class="btn link">Tous les projets →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Appel à contact -->
+    <section class="cta section">
+      <div class="container reveal">
+        <h2>Un projet en tête ?</h2>
+        <p>Je suis disponible pour des collaborations — événementiel, clip, publicité et contenus sociaux.</p>
+        <a class="btn primary" href="contact.html">Me contacter</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand" href="index.html"><span class="brand-mark">JR</span><span class="brand-name">Portfolio</span></a>
+        <p class="muted small">© <span id="year"></span> Tous droits réservés.</p>
+      </div>
+      <ul class="socials">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">YouTube</a></li>
+        <li><a href="#">LinkedIn</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
