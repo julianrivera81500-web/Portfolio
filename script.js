@@ -121,3 +121,136 @@ document.querySelectorAll('.projects-grid').forEach(grid => {
     dot.classList.remove('hover');
   });
 })();
+/* ===== BG "lignes" — 10x plus longues + couleurs du site ===== */
+(() => {
+
+  // Ne bloque plus en reduced-motion, mais tu peux remettre un return si tu veux respecter l'OS
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Conteneur plein écran
+  let bg = document.getElementById('bg-lines');
+  if (!bg){
+    bg = document.createElement('div');
+    bg.id = 'bg-lines';
+    document.body.prepend(bg);
+  }
+
+  // Récupère les couleurs depuis :root
+  const css = getComputedStyle(document.documentElement);
+  const c1 = (css.getPropertyValue('--accent')   || '#6C63FF').trim();
+  const c2 = (css.getPropertyValue('--accent-2') || '#00B3FF').trim();
+  const colors = [c1, c2]; // palette pilotée par ton thème
+
+  // Tailles — longueur ×10, épaisseur inchangée
+  const LONG  = [300, 350, 400, 500];  // ex- [30,35,40,50]
+  const THICK = [3, 4, 5, 6];          // épaisseur conservée
+
+  const pick = arr => arr[Math.floor(Math.random()*arr.length)];
+
+  function newLine(x, y){
+    const el = document.createElement('div');
+    const horizontal = Math.random() < 0.5;
+
+    el.className = 'line ' + (horizontal ? 'line-wide' : 'line-high');
+    el.style.backgroundColor = pick(colors);
+    el.style.left = x + 'px';
+    el.style.top  = y + 'px';
+
+    // si horizontal: width=LONG, height=THICK ; si vertical: inversé
+    el.style.width  = (horizontal ? pick(LONG)  : pick(THICK)) + 'px';
+    el.style.height = (horizontal ? pick(THICK) : pick(LONG))  + 'px';
+
+    // Lignes un peu plus douces si reduced-motion
+    if (reduceMotion) el.style.opacity = '0.7';
+
+    bg.appendChild(el);
+const rootStyles = getComputedStyle(document.documentElement);
+const durStr = rootStyles.getPropertyValue('--bg-line-duration').trim() || '2600ms';
+const durMs  = parseFloat(durStr); // lit "2600ms" -> 2600
+setTimeout(() => el.remove(), (isNaN(durMs) ? 2600 : durMs) + 400);
+
+
+    // garde le DOM propre
+    if (bg.children.length > 200) {
+      const extra = bg.children.length - 200;
+      for (let i=0; i<extra; i++) bg.firstChild?.remove();
+    }
+  }
+
+  // Crée une ligne à l’init + dès qu’on bouge de ≥12px (réactif)
+  let lastX, lastY; newLine(innerWidth/2, innerHeight/2);
+  // juste au-dessus de onMove :
+const STEP = 80; // 12px × 5 = 60px → lignes 5x plus espacées
+
+// ...
+const onMove = e => {
+  const x = e.clientX ?? e.touches?.[0]?.clientX;
+  const y = e.clientY ?? e.touches?.[0]?.clientY;
+  if (x == null || y == null) return;
+  if (lastX == null || lastY == null) { lastX = x; lastY = y; newLine(x, y); return; }
+
+  // AVANT : 12
+  // if (Math.hypot(x - lastX, y - lastY) > 12) { ... }
+
+  // APRÈS : 60 (espacement 5x)
+  if (Math.hypot(x - lastX, y - lastY) > STEP) {
+    lastX = x; lastY = y;
+    newLine(x, y);
+  }
+};
+
+
+  window.addEventListener('pointermove', onMove, { passive:true });
+})();
+/* ===== Hover zoom smooth (RAF) ===== */
+(() => {
+  // désactive sur écrans tactiles et si "réduire les animations"
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const SELECTORS = '.hero-photo img, .card-media img, .project-media img';
+  const imgs = document.querySelectorAll(SELECTORS);
+  if (!imgs.length) return;
+
+  const SCALE = 1.06;     // intensité du zoom
+  const DURATION = 260;   // ms
+  const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+
+  imgs.forEach(img => {
+    let raf = null, start = 0, from = 1, to = 1, current = 1;
+
+    function frame(ts){
+      if (!start) start = ts;
+      const p = Math.min(1, (ts - start) / DURATION);
+      current = from + (to - from) * easeOutCubic(p);
+      img.style.transform = `translateZ(0) scale(${current})`;
+      if (p < 1) raf = requestAnimationFrame(frame); else raf = null;
+    }
+    function go(target){
+      if (reduce) return;                 // respect accessibilité
+      cancelAnimationFrame(raf);
+      from = current;
+      to   = target;
+      start = 0;
+      raf = requestAnimationFrame(frame);
+    }
+    function reset(){ go(1); }
+
+    // init styles (évite conflit avec transitions CSS)
+    img.style.willChange = 'transform';
+    img.style.transformOrigin = 'center center';
+    img.style.transition = 'none';
+
+    // survol / sortie
+    img.addEventListener('pointerenter', () => go(SCALE));
+    img.addEventListener('pointerleave', reset);
+    img.addEventListener('blur', reset);
+
+    // focus clavier si l'image est dans un <a>
+    const link = img.closest('a');
+    if (link){
+      link.addEventListener('focus', () => go(SCALE));
+      link.addEventListener('blur',  reset);
+    }
+  });
+})();

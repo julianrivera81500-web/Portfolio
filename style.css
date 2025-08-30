@@ -7,6 +7,7 @@
   --card:#f6f7fb;
   --radius:16px;
   --shadow:0 10px 30px rgba(17,18,24,.08);
+    --bg-line-duration: 2600ms; /* (≈ 3,25x plus lent que 800ms) */
 }
 
 *{box-sizing:border-box}
@@ -390,3 +391,41 @@ html, body, a, button, input, textarea, select, label, [role="button"], summary 
   width:36px; height:36px; border:1px solid #eee; border-radius:10px; background:#fff;
 }
 .contact-list a.social-icon img{ width:18px; height:18px; }
+/* ===== BG "lignes" animé (adapté) ===== */
+#bg-lines{ position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+.line{
+  position:absolute; border-radius:1em;
+  animation-duration: var(--bg-line-duration);
+  animation-timing-function:cubic-bezier(.2,.7,.2,1);
+  will-change:transform,opacity; opacity:.9;
+}
+
+.line-wide{ transform:scaleX(1); animation-name:bg-change-width; }
+.line-high{ transform:scaleY(1); animation-name:bg-change-height; }
+
+@keyframes bg-change-width{ 0%{transform:scaleX(0);opacity:0} 100%{transform:scaleX(1);opacity:.9} }
+@keyframes bg-change-height{ 0%{transform:scaleY(0);opacity:0} 100%{transform:scaleY(1);opacity:.9} }
+
+/* s’assurer que le contenu passe au-dessus du bg */
+.site-header, main, footer{ position:relative; z-index:1; }
+/* Masque les lignes (#bg-lines) sous certains blocs de texte */
+.hero .hero-text,
+.section .section-head{
+  position: relative; 
+  z-index: 1;          /* au-dessus des lignes (z-index:0) */
+  isolation: isolate;  /* crée un contexte pour le ::before */
+}
+
+.hero .hero-text::before,
+.section .section-head::before{
+  content: "";
+  position: absolute;
+  inset: -8px -12px;              /* marge autour du texte */
+  background: var(--bg);          /* blanc du thème -> masque total des lignes */
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(17,18,24,.05);
+  z-index: -1;                    /* derrière le texte, mais devant #bg-lines */
+}
+
+/* Option : si tu veux un rendu un peu plus léger (translucide), remplace
+   background: var(--bg) par background: rgba(255,255,255,.92); */
