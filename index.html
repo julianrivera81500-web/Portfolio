@@ -17,6 +17,7 @@
         <span class="bar"></span><span class="bar"></span><span class="bar"></span>
       </button>
       <nav class="site-nav" aria-label="Navigation principale">
+        
         <ul>
           <li><a href="index.html" class="active">Accueil</a></li>
           <li><a href="about.html">À propos</a></li>
@@ -32,20 +33,27 @@
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-text reveal">
-          <h1 class="hero-title"><span class="accent">Vidéaste</span> & Photographe</h1>
-          <p class="hero-subtitle">Création de films, aftermovies et reportages photo — montage, étalonnage & effets visuels.</p>
-          <div class="hero-cta">
-            <a href="projects.html" class="btn primary">Voir mes projets</a>
-            <a href="about.html" class="btn ghost">En savoir plus</a>
-          </div>
-          <ul class="hero-badges">
-            <li>Premiere Pro</li>
-            <li>After Effects</li>
-            <li>DaVinci Resolve</li>
-            <li>Photoshop</li>
-            <li>Lightroom</li>
-          </ul>
-        </div>
+  <h1 class="hero-title"><span class="accent">Vidéaste</span> & Photographe</h1>
+
+  <!-- Open To work sous le titre -->
+  <div class="otw-inline">
+    <span class="otw-dot" aria-hidden="true"></span>
+    <span class="otw-text">Open To work</span>
+  </div>
+
+  <p class="hero-subtitle">Création de films, aftermovies et reportages photo — montage, étalonnage & effets visuels.</p>
+
+  <!-- CTA avec Download CV à côté d'En savoir plus -->
+  <div class="hero-cta">
+    <a href="projects.html" class="btn primary">Voir mes projets</a>
+    <a href="about.html" class="btn ghost">En savoir plus</a>
+    <a href="assets/cv/Julian_Rivera_CV.pdf" class="btn ghost small" download>Download CV</a>
+  </div>
+
+  <!-- on supprime la liste des badges -->
+  <!-- (ancien <ul class="hero-badges"> ... </ul> supprimé) -->
+</div>
+
         <div class="hero-media reveal" aria-hidden="true">
           <div class="hero-photo">
             <img src="assets/hero.jpg" alt="Portrait ">
@@ -112,17 +120,18 @@
         <a class="brand" href="index.html"><span class="brand-mark">JR</span><span class="brand-name">Portfolio</span></a>
         <p class="muted small">© <span id="year"></span> Tous droits réservés.</p>
       </div>
-      <ul class="socials">
-  <li><a href="#" target="_blank" rel="noopener" aria-label="Instagram">
+<ul class="socials">
+  <li><a href="https://www.instagram.com/julian.rvr_" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
     <img src="assets/icones/instagram.png" alt="Instagram">
   </a></li>
-  <li><a href="#" target="_blank" rel="noopener" aria-label="YouTube">
+  <li><a href="https://www.youtube.com/@julian.rivera31" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
     <img src="assets/icones/youtube.png" alt="YouTube">
   </a></li>
-  <li><a href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
+  <li><a href="https://www.linkedin.com/in/julian-rvr/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
     <img src="assets/icones/linkedin.png" alt="LinkedIn">
   </a></li>
 </ul>
+
 
     </div>
   </footer>

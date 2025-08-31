@@ -254,3 +254,78 @@ const onMove = e => {
     }
   });
 })();
+/* ===== Cursor ring v2 — smooth 0→1 sur éléments cliquables ===== */
+(() => {
+  // pas d'effet sur tactile
+  if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return;
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // anneau (et point existant si besoin)
+  let ring = document.querySelector('.cursor-ring');
+  if (!ring) {
+    ring = document.createElement('div');
+    ring.className = 'cursor-ring';
+    document.body.appendChild(ring);
+  }
+
+  // position du ring
+  let x = 0, y = 0;
+  window.addEventListener('mousemove', e => {
+    x = e.clientX; y = e.clientY;
+    ring.style.left = x + 'px';
+    ring.style.top  = y + 'px';
+  }, { passive:true });
+
+  // détection des éléments interactifs
+  const SEL = 'a,button,.btn,[role="button"],input[type="submit"],summary,label[for]';
+  let target = 0;    // 0..1 : veut-on afficher l’anneau ?
+  let s = 0;         // 0..1 : état courant (animé)
+  let last = 0, raf;
+
+  // bascule 0→1 au survol/focus, et 1→0 en sortie
+  document.addEventListener('mouseover',  e => { target = e.target.closest(SEL) ? 1 : 0; });
+  document.addEventListener('mouseout',   e => { if (!e.relatedTarget || !e.relatedTarget.closest(SEL)) target = 0; });
+  document.addEventListener('focusin',    e => { if (e.target.closest(SEL)) target = 1; });
+  document.addEventListener('focusout',   e => { if (!document.activeElement || !document.activeElement.closest(SEL)) target = 0; });
+  window.addEventListener('mouseleave',   () => { target = 0; });
+
+  // anim lissée (approche exp. vers la cible), ~220ms
+  const DURATION = 220; // ms pour aller proche de la cible
+  function tick(ts){
+    if (!last) last = ts;
+    const dt = ts - last; last = ts;
+
+    const diff = target - s;
+    if (Math.abs(diff) < 0.001) {
+      s = target;
+    } else {
+      // convertit une durée en facteur d’approche selon dt (smooth, indépendant FPS)
+      const k = 1 - Math.pow(1 - 1/Math.max(1, DURATION), dt);
+      s += diff * k;
+    }
+    ring.style.setProperty('--s', s.toFixed(3));
+    raf = requestAnimationFrame(tick);
+  }
+  raf = requestAnimationFrame(tick);
+
+  // petit "bump" au clic (optionnel, discret)
+  document.addEventListener('mousedown', e => {
+    if (reduce || !e.target.closest(SEL)) return;
+    ring.style.setProperty('--b', '1.14');
+    setTimeout(() => ring.style.setProperty('--b','1'), 90);
+  });
+})();
+
+/* ===== Reflet “shine” sur les boutons (conserve le design existant) ===== */
+(() => {
+  if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return;
+  const updateShine = (btn, e) => {
+    const r = btn.getBoundingClientRect();
+    btn.style.setProperty('--x', (e.clientX - r.left) + 'px');
+    btn.style.setProperty('--y', (e.clientY - r.top)  + 'px');
+  };
+  document.addEventListener('pointermove', (e) => {
+    const btn = e.target.closest('.btn');
+    if (btn) updateShine(btn, e);
+  }, { passive:true });
+})();

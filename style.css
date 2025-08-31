@@ -429,3 +429,91 @@ html, body, a, button, input, textarea, select, label, [role="button"], summary 
 
 /* Option : si tu veux un rendu un peu plus léger (translucide), remplace
    background: var(--bg) par background: rgba(255,255,255,.92); */
+/* Bloc "Open To work" + bouton CV (remplace les badges) */
+.hero-availability{
+  display:flex; flex-direction:column; align-items:center; gap:10px; margin-top:8px;
+}
+.otw-label{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:.35rem .65rem; border-radius:999px;
+  background:#ecfdf5; border:1px solid #c6f3d9;
+  color:#0a7d28; font-weight:600;
+}
+.otw-label::before{
+  content:""; width:10px; height:10px; border-radius:50%;
+  background:#16a34a; box-shadow:0 0 0 0 rgba(22,163,74,.55);
+  animation:otw-pulse 1.8s ease-out infinite;
+}
+@keyframes otw-pulse{
+  0%{ box-shadow:0 0 0 0 rgba(22,163,74,.55) }
+  70%{ box-shadow:0 0 0 10px rgba(22,163,74,0) }
+  100%{ box-shadow:0 0 0 0 rgba(22,163,74,0) }
+}
+/* bouton plus compact */
+.btn.small{ padding:.5rem .85rem; font-size:.92rem }
+/* ==== Open To work (sous le titre) ==== */
+.otw-inline{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:.32rem .6rem; border-radius:999px;
+  background:#ecfdf5; border:1px solid #c6f3d9; color:#0a7d28;
+  font-weight:600; margin:4px 0 10px;
+}
+.otw-dot{
+  width:10px; height:10px; border-radius:50%;
+  background:#16a34a;
+  box-shadow:0 0 0 0 rgba(22,163,74,.55);
+  animation:otw-pulse 1.8s ease-out infinite;
+}
+@keyframes otw-pulse{
+  0%   { box-shadow:0 0 0 0 rgba(22,163,74,.55); }
+  70%  { box-shadow:0 0 0 10px rgba(22,163,74,0); }
+  100% { box-shadow:0 0 0 0 rgba(22,163,74,0); }
+}
+
+/* bouton CV plus compact */
+.btn.small{ padding:.5rem .85rem; font-size:.92rem }
+/* ===== Cursor ring (visible uniquement sur éléments cliquables) ===== */
+/* ===== Cursor ring (smooth 0→1) ===== */
+.cursor-ring{
+  position:fixed; left:0; top:0;
+  width:26px; height:26px; border-radius:50%;
+  border:1.8px solid #fff;
+  pointer-events:none; z-index:10000;
+  mix-blend-mode:difference;
+
+  /* animé par JS via variables */
+  --s: 0;            /* scale 0..1 */
+  --b: 1;            /* petit bump temporaire au clic */
+  transform:translate(-50%,-50%) scale(calc(var(--s) * var(--b)));
+  opacity: var(--s);
+}
+@media (prefers-reduced-motion: reduce){
+  .cursor-ring{ transform:translate(-50%,-50%) scale(var(--s)); }
+}
+
+@keyframes ring-burst{
+  0%{ transform:translate(-50%,-50%) scale(1.1); opacity:1 }
+  100%{ transform:translate(-50%,-50%) scale(1.55); opacity:0 }
+}
+
+/* ===== Reflet “shine” sur les boutons (suivi souris) ===== */
+.btn{
+  position:relative; overflow:hidden;
+  --x:50%; --y:50%;
+}
+.btn::after{
+  content:"";
+  position:absolute; inset:-1px;
+  background:radial-gradient(140px 140px at var(--x) var(--y),
+    rgba(255,255,255,.22), rgba(255,255,255,0) 60%);
+  opacity:0; transition:opacity .18s ease;
+  pointer-events:none; mix-blend-mode:soft-light;
+}
+.btn:hover::after, .btn:focus-visible::after{ opacity:1; }
+
+/* Accessibilité : pas d’animation si l’utilisateur réduit les animations */
+@media (prefers-reduced-motion: reduce){
+  .cursor-ring{ transition:none }
+  .cursor-ring.burst{ animation:none }
+  .btn::after{ transition:none }
+}
