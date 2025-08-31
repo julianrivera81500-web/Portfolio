@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <style>
+    .bg{fill:#ffffff}
+    .fg{fill:#111827}
+    @media (prefers-color-scheme: dark){
+      .bg{fill:#111827}
+      .fg{fill:#F9FAFB}
+    }
+  </style>
+  <!-- fond arrondi -->
+  <rect class="bg" x="0" y="0" width="512" height="512" rx="112"></rect>
+  <!-- halo dégradé discret -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6C63FF"></stop>
+      <stop offset="1" stop-color="#00B3FF"></stop>
+    </linearGradient>
+  </defs>
+  <circle cx="256" cy="256" r="190" fill="url(#g)" opacity=".18"></circle>
+  <!-- icône vidéo minimaliste (triangle + point REC) -->
+  <polygon class="fg" points="206,166 366,256 206,346"></polygon>
+  <circle cx="360" cy="188" r="18" fill="#6C63FF"></circle>
+</svg>
