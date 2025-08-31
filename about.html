@@ -17,8 +17,14 @@
   <link rel="icon" href="assets/favicon/favicon-16.png" sizes="16x16" type="image/png">
   <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
   <meta name="theme-color" content="#111827">
+
+  <!-- Petites aides locales pour cette page (tu peux laisser / retirer) -->
+  <style>
+    .fit-contain{ object-fit:contain !important; padding:18px; background:transparent; }
+    .skill-item .project-body{ padding:10px 14px 14px; }
+  </style>
 </head>
-<body>
+<body class="page-about">
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="index.html"><span class="brand-mark">JR</span><span class="brand-name">Portfolio</span></a>
@@ -37,23 +43,41 @@
   </header>
 
   <main>
-    <!-- BIO -->
-    <section class="section">
-      <div class="container reveal">
+<!-- À PROPOS (bloc texte + photo) -->
+<section class="section">
+  <div class="container reveal">
+    <div class="about-block">
+      <div class="about-text">
         <h1 class="section-title">À propos</h1>
+
         <p>
-          Passionné d’audiovisuel depuis longtemps, je réalise aujourd’hui aftermovies, clips, reportages et shootings photo.
-          Curieux et autodidacte, j’aime relever de nouveaux défis et travailler sur des projets ambitieux.
+          Passionné d’audiovisuel depuis longtemps, je réalise aujourd’hui aftermovies, clips,
+          reportages et shootings photo. Curieux et autodidacte, j’aime relever de nouveaux défis
+          et travailler sur des projets ambitieux.
+        </p>
+
+        <p>
+          Dès <strong>2025</strong>, j’intègre <strong>l’école MJM Graphic</strong> en tant que
+          <strong>monteur vidéo / VFX</strong> afin de consolider ma technique en post-production
+          et accélérer sur des workflows professionnels.
         </p>
       </div>
-    </section>
 
-    <!-- COMPÉTENCES (une ligne par logiciel, logo → texte qui sort en JS) -->
+      <div class="about-photo" aria-hidden="true">
+        <img src="assets/hero.jpg" alt="Portrait de Julian Rivera">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- COMPÉTENCES (une ligne par logiciel, texte qui sort de l’icône vers la droite) -->
     <section class="section skills-section">
       <div class="container reveal">
         <h2 class="section-title">Compétences</h2>
 
         <ul class="skills-stack">
+          <!-- Premiere Pro -->
           <li class="skill-row" tabindex="0">
             <span class="skill-logo"><img src="assets/icones/premierepro.png" alt="Premiere Pro"></span>
             <div class="skill-text">
@@ -62,6 +86,7 @@
             </div>
           </li>
 
+          <!-- After Effects -->
           <li class="skill-row" tabindex="0">
             <span class="skill-logo"><img src="assets/icones/aftereffect.png" alt="After Effects"></span>
             <div class="skill-text">
@@ -70,6 +95,7 @@
             </div>
           </li>
 
+          <!-- DaVinci Resolve -->
           <li class="skill-row" tabindex="0">
             <span class="skill-logo"><img src="assets/icones/davinci.png" alt="DaVinci Resolve"></span>
             <div class="skill-text">
@@ -78,6 +104,7 @@
             </div>
           </li>
 
+          <!-- Photoshop -->
           <li class="skill-row" tabindex="0">
             <span class="skill-logo"><img src="assets/icones/photoshop.png" alt="Photoshop"></span>
             <div class="skill-text">
@@ -86,6 +113,7 @@
             </div>
           </li>
 
+          <!-- Lightroom -->
           <li class="skill-row" tabindex="0">
             <span class="skill-logo"><img src="assets/icones/lightroom.png" alt="Lightroom"></span>
             <div class="skill-text">
@@ -97,7 +125,7 @@
       </div>
     </section>
 
-    <!-- MATÉRIEL : même format/dimensions/effet que les albums -->
+    <!-- MATÉRIEL (même format que tes albums) -->
     <section class="section">
       <div class="container reveal">
         <h2 class="section-title">Matériel</h2>
@@ -109,7 +137,7 @@
               <span class="thumb-label">Sony A7 IV</span>
             </div>
             <div class="project-body">
-              <h3 class="project-title">Sony A7 IV</h3>
+              <h3 class="project-title">Appareil à Photo / Vidéo</h3>
               <p class="project-text">Hybride plein format polyvalent.</p>
             </div>
           </div>
@@ -162,7 +190,7 @@
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer no-lines">
     <div class="container footer-grid">
       <div>
         <a class="brand" href="index.html"><span class="brand-mark">JR</span><span class="brand-name">Portfolio</span></a>

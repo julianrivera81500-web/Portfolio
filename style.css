@@ -21,6 +21,7 @@
 
 *{ box-sizing:border-box; }
 html,body{ height:100%; }
+/* Laisse JS gérer le smooth si souhaité */
 html{ scroll-behavior:smooth; }
 body{
   margin:0;
@@ -53,53 +54,32 @@ h1,h2,h3,h4,
 }
 
 /* ===========================================================
-   Header (transparent + nav active carré noir)
+   Header “glass” (fixe, floute le contenu derrière)
 =========================================================== */
-/* ===== Header “glass” : blur du contenu derrière + plus de bordure ===== */
 .site-header{
-  position: sticky;
-  top: 0;
-  z-index: 100 !important;
-  min-height: var(--header-h);
-  background: transparent;               /* le fond est géré par ::before */
-  border-bottom: none;                   /* supprime la petite ligne grise */
-  color: #fff;
-  /* crée un contexte pour le ::before */
-  position: sticky;                      /* (déjà présent) */
+  position: fixed;      /* ← fixe, ne disparaît pas en bas de page */
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  height: var(--header-h);
+  background: transparent;     /* le fond est géré par ::before */
+  color:#fff;
+  border-bottom:none;          /* pas de petite ligne grise */
 }
-
 .site-header::before{
   content:"";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;                  /* ne bloque pas les clics */
-  /* floute ce qui est DERRIÈRE le header */
+  position:absolute; inset:0;
+  pointer-events:none;
   backdrop-filter: blur(10px) saturate(120%);
   -webkit-backdrop-filter: blur(10px) saturate(120%);
-  /* léger voile pour que le blur soit visible partout sur la hauteur */
-  background: linear-gradient(
-    to bottom,
-    rgba(8,12,24,.55),
-    rgba(8,12,24,.22)
-  );
-  /* si tu veux un header parfaitement “plat”, enlève le gradient
-     et mets à la place: background: rgba(8,12,24,.28); */
+  background: linear-gradient(to bottom, rgba(8,12,24,.55), rgba(8,12,24,.22));
 }
-
-/* assure que le contenu du header passe AU-DESSUS du ::before */
 .site-header .nav-wrap{
-  position: relative;
-  z-index: 1;
+  position:relative;
+  z-index:1;
+  height:var(--header-h);
 }
-/* Menu mobile ouvert : même style “verre” que le header */
-@media (max-width: 900px){
-  .site-nav{
-    backdrop-filter: blur(10px) saturate(120%);
-    -webkit-backdrop-filter: blur(10px) saturate(120%);
-    background: rgba(8,12,24,.72);
-    border-bottom: none; /* pas de ligne grise */
-  }
-}
+/* Espace sous le header fixe */
+body{ padding-top:var(--header-h); }
 
 main, footer{ position: relative; z-index: 1; }
 
@@ -131,8 +111,24 @@ main, footer{ position: relative; z-index: 1; }
 .nav-toggle{ display:none; flex-direction:column; gap:4px; background:none; border:0; padding:8px; border-radius:10px; }
 .nav-toggle .bar{ width:22px; height:2px; background:#fff; display:block; }
 
+/* Menu mobile “verre” */
+@media (max-width: 900px){
+  .site-nav{
+    position:fixed; inset:var(--header-h) 0 auto 0;
+    transform:translateY(-120%);
+    transition:transform .25s ease;
+    backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+    background: rgba(8,12,24,.72);
+    border-bottom:none;
+  }
+  .site-nav.open{ transform:none; }
+  .nav-toggle{ display:flex; }
+  .site-nav ul{ flex-direction:column; padding:14px 18px 22px; }
+}
+
 /* ===========================================================
-   Hero (gradient noir→bleu) — page d’accueil
+   Hero (gradient noir→bleu)
 =========================================================== */
 .hero.hero-gradient{
   position:relative;
@@ -147,7 +143,7 @@ main, footer{ position: relative; z-index: 1; }
 }
 .hero-v2{ text-align:center; max-width:820px; }
 
-/* pill Open To Work */
+/* Open to work pill */
 .otw-pill{
   display:inline-flex; align-items:center; gap:10px;
   padding:.45rem .75rem; border-radius:999px;
@@ -159,14 +155,11 @@ main, footer{ position: relative; z-index: 1; }
 .otw-dot{
   width:10px; height:10px; border-radius:50%;
   background:#2ee47a;
-  /* 1er halo fixe (4px) + 2e halo animé (valeur 0 → 12px) */
   box-shadow:
-    0 0 0 0 px rgba(46,228,122,.18),
-    0 0 0 0 rgba(46,228,122,.45);
+    0 0 0 4px rgba(46,228,122,.18),  /* halo fixe */
+    0 0 0 0  rgba(46,228,122,.45);  /* halo animé */
   animation: otw-pulse 1.8s ease-out infinite;
 }
-
-/* Animation du deuxième halo */
 @keyframes otw-pulse{
   0%{
     box-shadow:
@@ -185,10 +178,7 @@ main, footer{ position: relative; z-index: 1; }
   }
 }
 
-
-
 .pixel-title{ margin:18px 0 8px; font-size:clamp(48px, 9vw, 120px); line-height:.95; }
-
 .hero-lead{ margin:8px auto 18px; color:rgba(255,255,255,.84); font-size:clamp(16px, 2.2vw, 18px); max-width:720px; }
 
 .hero-actions{ display:flex; gap:12px; justify-content:center; margin:12px 0 8px; }
@@ -247,21 +237,18 @@ main, footer{ position: relative; z-index: 1; }
 .project-title{ margin:2px 0 4px; font-size:1.25rem; }
 .project-text{ margin:0; color:rgba(255,255,255,.9); }
 
-/* MEDIA WRAPPERS — clé pour les bons ratios */
+/* Media wrappers — ratios */
 .project-media{
   position: relative;
-  display: block;          /* <a> devient bloc */
+  display: block;
   width: 100%;
   overflow: hidden;
   background:#0d1322;
 }
-
-/* on force ici le ratio désiré */
 .project-media.square{     aspect-ratio: 1 / 1; height:auto; }
 .project-media.vertical{   aspect-ratio: 9 / 16; height:auto; }
 .project-media.horizontal{ aspect-ratio: 16 / 9; height:auto; }
 
-/* le média remplit son wrapper */
 .project-media img,
 .project-media video{
   width: 100%;
@@ -270,7 +257,7 @@ main, footer{ position: relative; z-index: 1; }
   display: block;
 }
 
-/* Label en bas de vignettes d'albums */
+/* Label en bas des vignettes */
 .thumb-label{
   position: absolute;
   left: 0; right: 0; bottom: 0;
@@ -281,7 +268,7 @@ main, footer{ position: relative; z-index: 1; }
   background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 70%, rgba(0,0,0,.78) 100%);
 }
 
-/* (facultatif) classes d’appoint pour video tag si besoin */
+/* (facultatif) classes d’appoint pour <video> */
 .video-vertical{ width:100%; height:100%; object-fit:cover; }
 .video-horizontal{ width:100%; height:100%; object-fit:cover; }
 
@@ -290,6 +277,19 @@ main, footer{ position: relative; z-index: 1; }
 .cta h2{ margin:0 0 6px; }
 .cta p{ margin:0 0 16px; }
 .btn.primary{ background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#fff; }
+/* Masque le fond animé (lignes) uniquement dans la CTA de la home */
+.cta.no-lines{
+  position: relative;
+  background: #0b1020;        /* opaque = aucun trait visible derrière */
+  isolation: isolate;         /* sécurise l'empilement interne */
+  border-top: 1px solid rgba(255,255,255,.08);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.cta.no-lines > .container{
+  position: relative;
+  z-index: 1;
+}
 
 /* Footer */
 .site-footer{ border-top:1px solid rgba(255,255,255,.08); padding:28px 0; }
@@ -322,7 +322,7 @@ textarea{ min-height:140px; resize:vertical; }
 .contact-socials img{ width:18px; height:18px; }
 
 /* ===========================================================
-   BG "lignes" (si activé dans ton JS)
+   BG "lignes"
 =========================================================== */
 #bg-lines{ position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
 .line{ position:absolute; border-radius:1em; animation-duration:var(--bg-line-duration); animation-timing-function:cubic-bezier(.2,.7,.2,1); will-change:transform,opacity; opacity:.9; }
@@ -338,9 +338,19 @@ textarea{ min-height:140px; resize:vertical; }
 .reveal.visible{ opacity:1; transform:none; }
 
 /* ===========================================================
-   Cursor "dot" + ring (si activé dans ton JS)
+   Cursor "dot" + ring
 =========================================================== */
-.cursor{ position:fixed; left:0; top:0; width:12px; height:12px; border-radius:50%; pointer-events:none; z-index:10000; background:#fff; mix-blend-mode:difference; transform:translate(-50%,-50%); transition:transform .12s ease, opacity .15s ease; opacity:.9; }
+.cursor{
+  position:fixed; left:0; top:0;
+  width:16px; height:16px; border-radius:50%;
+  pointer-events:none; z-index:10000;
+  background:#fff; mix-blend-mode:difference;
+  transform:translate(-50%,-50%);
+  /* on n’anime plus le transform en CSS, le JS animera left/top */
+  transition: opacity .15s ease;
+  will-change: left, top;
+}
+
 .cursor.click{ transform:translate(-50%,-50%) scale(1.35); }
 .cursor.hidden{ opacity:0; }
 .cursor.hover{ transform:translate(-50%,-50%) scale(1.15); }
@@ -352,12 +362,12 @@ textarea{ min-height:140px; resize:vertical; }
 }
 
 /* ===========================================================
-   Lightbox — masquée par défaut
+   Lightbox
 =========================================================== */
 .lightbox{
   position: fixed;
   inset: 0;
-  display: none !important;        /* cachée hors usage */
+  display: none !important;
   align-items: center;
   justify-content: center;
   background: rgba(0,0,0,.82);
@@ -391,10 +401,6 @@ textarea{ min-height:140px; resize:vertical; }
   .work .card{ grid-column:span 12; }
 }
 @media (max-width: 900px){
-  .site-nav{ position:fixed; inset:var(--header-h) 0 auto 0; background:rgba(0,0,0,.72); border-bottom:1px solid rgba(255,255,255,.08); transform:translateY(-120%); transition:transform .25s ease; }
-  .site-nav.open{ transform:none; }
-  .nav-toggle{ display:flex; }
-  .site-nav ul{ flex-direction:column; padding:14px 18px 22px; }
   .projects-grid{ grid-template-columns:repeat(6,1fr); }
   .project-item{ grid-column:span 6; }
   .contact-wrap{ grid-template-columns:1fr; }
@@ -405,47 +411,35 @@ textarea{ min-height:140px; resize:vertical; }
   .project-item{ grid-column:span 6; }
   .hero-actions{ flex-direction:column; }
 }
+
 /* Carte mise en avant (≈2.5x plus large → 10 colonnes sur 12) */
 .project-item.xl { grid-column: span 10; }
+@media (max-width: 1100px){ .project-item.xl { grid-column: span 12; } }
+@media (max-width: 900px){  .project-item.xl { grid-column: span 6;  } }
+@media (max-width: 640px){  .project-item.xl { grid-column: span 6;  } }
 
-/* Responsives : on la remet en pleine largeur ou demi sur petits écrans */
-@media (max-width: 1100px){
-  .project-item.xl { grid-column: span 12; }
-}
-@media (max-width: 900px){
-  /* ta grille passe en 6 colonnes → on garde la même largeur que les autres */
-  .project-item.xl { grid-column: span 6; }
-}
-@media (max-width: 640px){
-  .project-item.xl { grid-column: span 6; } /* full ligne sur mobile */
-}
 /* Flou en dégradé (net en haut → flou en bas) sur les albums */
 .project-media.square::after{
   content:"";
   position:absolute;
-  inset:auto 0 0 0;                  /* collé en bas */
-  height:clamp(90px, 28%, 160px);    /* commence plus bas, ajuste si besoin */
-  /* flou + léger assombrissement */
+  inset:auto 0 0 0;
+  height:clamp(90px, 28%, 160px);
   backdrop-filter: blur(10px) saturate(115%);
   -webkit-backdrop-filter: blur(10px) saturate(115%);
   background: rgba(5,7,12,.35);
-
-  /* le MASQUE fait la transition NET → FLOU
-     (0 = transparent → pas de flou ; 1 = opaque → flou visible) */
   mask-image: linear-gradient(to top,
-               rgba(0,0,0,1) 0%,      /* bas : flou fort visible */
+               rgba(0,0,0,1) 0%,
                rgba(0,0,0,.85) 35%,
                rgba(0,0,0,.45) 65%,
-               rgba(0,0,0,0) 100%);   /* haut : net */
+               rgba(0,0,0,0) 100%);
   -webkit-mask-image: linear-gradient(to top,
                rgba(0,0,0,1) 0%,
                rgba(0,0,0,.85) 35%,
                rgba(0,0,0,.45) 65%,
                rgba(0,0,0,0) 100%);
   pointer-events:none;
-  z-index:1;                          /* sous le libellé */
+  z-index:1;
 }
-
 /* le libellé reste au-dessus */
 .thumb-label{
   position:absolute; left:0; right:0; bottom:0;
@@ -458,115 +452,201 @@ textarea{ min-height:140px; resize:vertical; }
     rgba(0,0,0,.28) 70%,
     rgba(0,0,0,.50) 100%);
 }
+
 /* Matériel — flou dégradé en bas de l’image (net → flou) */
 .equip-media,
-.equip-media-inner{
-  position: relative;
-  overflow: hidden;
-}
-
+.equip-media-inner{ position: relative; overflow: hidden; }
 .equip-media::after{
   content:"";
-  position:absolute;
-  inset:auto 0 0 0;                  /* collé en bas */
-  height:clamp(80px, 28%, 150px);    /* commence plus bas; ajuste si besoin */
-  /* flou + léger assombrissement */
+  position:absolute; inset:auto 0 0 0;
+  height:clamp(80px, 28%, 150px);
   backdrop-filter: blur(10px) saturate(115%);
   -webkit-backdrop-filter: blur(10px) saturate(115%);
   background: rgba(5,7,12,.35);
-
-  /* masque = transition NET (haut) → FLOU (bas) */
-  mask-image: linear-gradient(
-    to top,
-    rgba(0,0,0,1)   0%,
+  mask-image: linear-gradient(to top,
+    rgba(0,0,0,1) 0%,
     rgba(0,0,0,.85) 35%,
     rgba(0,0,0,.45) 65%,
-    rgba(0,0,0,0)  100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to top,
-    rgba(0,0,0,1)   0%,
+    rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to top,
+    rgba(0,0,0,1) 0%,
     rgba(0,0,0,.85) 35%,
     rgba(0,0,0,.45) 65%,
-    rgba(0,0,0,0)  100%
-  );
-
+    rgba(0,0,0,0) 100%);
   pointer-events:none;
-  z-index:1;   /* ne gêne pas l’image; reste dans la zone media */
+  z-index:1;
 }
-
-/* (optionnel) si tes images ne remplissent pas bien le cadre */
 .equip-media img,
-.equip-media-inner img{
-  width:100%;
-  height:100%;
-  object-fit:cover;   /* mets "contain" si tu veux tout voir sans recadrage */
-  display:block;
-}
-/* ============ Compétences (une ligne par logiciel) ============ */
-.skills-stack{
-  list-style:none;
-  margin:0; padding:0;
-  display:grid; gap:12px;
-}
-.skill-row{
-  display:flex; align-items:center; gap:14px;
-  padding:10px 12px;
-  border-radius:14px;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.12);
-  transition:background .2s ease, border-color .2s ease, transform .15s ease;
-}
-.skill-row:hover,
-.skill-row:focus-within{
-  background:rgba(255,255,255,.08);
-  border-color:rgba(255,255,255,.18);
-  transform:translateY(-1px);
-}
-.skill-row:focus{ outline:none; }
+.equip-media-inner img{ width:100%; height:100%; object-fit:cover; display:block; }
 
+/* ===== Compétences : une ligne par logiciel + révélation droite ===== */
 .skill-logo{
   flex:0 0 auto;
-  width:56px; height:56px;
+  width:56px;
+  height:56px;
+  display:grid;
+  place-items:center;
   border-radius:12px;
-  display:grid; place-items:center;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.18);
+  background:#121826;
+  border:1px solid #263147;
   overflow:hidden;
 }
 .skill-logo img{ width:72%; height:72%; object-fit:contain; display:block; }
+/* Compétences */
+.skills-stack{ list-style:none; margin:0; padding:0; display:grid; gap:12px; }
 
-/* Le texte est “rangé” par défaut, révélé vers la droite */
-.skill-text{
-  overflow:hidden;
-  opacity:0;
-  transform:translateX(-6px);
-  /* on prépare une révélation gauche→droite ; fallback géré en JS */
-  clip-path: inset(0 100% 0 0);
-  will-change: clip-path, opacity, transform;
+.skill-row{
+  display:flex; align-items:center; gap:14px;
+  padding:12px 14px; border-radius:14px;
+  background:#0f1421;                 /* OPAQUE → les lignes de fond ne traversent plus */
+  border:1px solid #1f2740;
+  box-shadow:0 8px 20px rgba(0,0,0,.28);
+  overflow:hidden; position:relative; isolation:isolate;
 }
+.skill-row:hover,.skill-row:focus-within{ background:#121a2b; border-color:#2a3553; }
+
+.skill-logo{
+  flex:0 0 auto; width:56px; height:56px; display:grid; place-items:center;
+  border-radius:12px; background:#121826; border:1px solid #263147; overflow:hidden;
+}
+.skill-logo img{ width:72%; height:72%; object-fit:contain; display:block; }
+
+/* ⚠️ visible par défaut : le JS se charge juste d’animer */
+.skill-text{ overflow:hidden; }
 .skill-title{ margin:0 0 2px; font-size:1.15rem; }
 .skill-desc{ margin:0; color:rgba(255,255,255,.88); }
 
-/* état final après anim (JS ajoute .open) */
-.skill-row.open .skill-text{
-  opacity:1;
-  transform:none;
-  clip-path: inset(0 0 0 0);
+/* Reveal (utilisé sur .container.reveal de about.html) */
+.reveal{ opacity:0; transform:translateY(12px); transition:opacity .6s ease, transform .6s ease; }
+.reveal.visible{ opacity:1; transform:none; }
+
+/* Cartes Compétences OPAQUES — uniquement sur la page À propos */
+body.page-about .skills-section,
+body.page-about .skills-section .skills-stack{ background:transparent !important; }
+body.page-about .skills-section .skill-row{
+  position:relative;
+  background:#0f1421 !important;
+  border:1px solid #1f2740 !important;
+  box-shadow:0 8px 20px rgba(0,0,0,.28);
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+  isolation:isolate;
 }
-/* Laisser voir le fond animé derrière la section Compétences */
-.skills-section { 
-  background: transparent;         /* pas de plaque opaque */
-  position: relative; 
-  z-index: 1;                       /* au-dessus des lignes, mais transparent */
+body.page-about .skills-section .skill-row:hover,
+body.page-about .skills-section .skill-row:focus-within{
+  background:#121a2b !important;
+  border-color:#2a3553 !important;
+}
+body.page-about .skills-section .skill-logo{
+  background:#121826 !important;
+  border:1px solid #263147 !important;
+}
+/* Masque le fond animé derrière le footer */
+.site-footer.no-lines{
+  position: relative;
+  background: #060912;   /* fond opaque */
+  isolation: isolate;    /* évite les mélanges avec #bg-lines */
 }
 
-.skills-section .skills-stack { 
-  background: transparent;          /* aucune couleur de fond */
+/* S'assure que le contenu passe au-dessus */
+.site-footer.no-lines > .container{
+  position: relative;
+  z-index: 1;
+}
+/* --- Sticky footer layout --- */
+html, body { height: 100%; }              /* déjà présent : OK */
+body{
+  min-height: 100vh;                      /* assure au moins la hauteur écran */
+  display: flex;                          /* <main> prend l'espace restant */
+  flex-direction: column;
+  /* garde ton padding-top existant pour compenser le header fixe */
+  /* padding-top: var(--header-h);  ← tu l'as déjà, ne le duplique pas */
+}
+main { flex: 1 0 auto; }                  /* pousse le footer en bas */
+.site-footer { flex-shrink: 0; }          /* le footer ne rétrécit pas */
+/* ===== Bloc À propos : plus grand (texte + photo) ===== */
+.about-block{
+  display:grid;
+  grid-template-columns: 1.3fr .7fr;   /* plus de place pour le texte */
+  gap: 28px;
+  align-items: stretch;
+  background: var(--card);             /* opaque → pas de lignes en dessous */
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
 }
 
-.skills-section .skill-row{
-  background: rgba(255,255,255, .035);  /* encore plus léger */
-  border: 1px solid rgba(255,255,255, .12);
-  backdrop-filter: none;                /* ne “gèle”/aplati pas l’arrière-plan */
+.about-text{
+  padding: 28px 28px 26px;
+}
+
+.about-block .section-title{
+  /* titre nettement plus grand */
+  font-size: clamp(2.4rem, 6vw, 3.8rem);
+  line-height: 1.02;
+  margin: 4px 0 10px;
+}
+
+.about-text p{
+  font-size: clamp(1rem, 1.9vw, 1.12rem);  /* texte un peu plus grand */
+  line-height: 1.75;
+  margin: 0 0 14px;
+  color: rgba(255,255,255,.92);
+}
+
+.about-photo{
+  position: relative;
+  min-height: 420px;                   /* bloc global plus “présent” */
+  background: #0d1322;
+}
+
+.about-photo img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Responsive : pile sur mobile, image en dessous */
+@media (max-width: 900px){
+  .about-block{
+    grid-template-columns: 1fr;
+  }
+  .about-text{
+    padding: 20px 18px;
+  }
+  .about-photo{
+    height: 300px;
+    min-height: 0;
+  }
+  .about-block .section-title{
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+}
+/* === Agrandir Compétences (noms + textes) — page À propos === */
+.page-about .skill-row{ padding:14px 16px; }
+.page-about .skill-title{
+  font-size: clamp(1.25rem, 2.4vw, 1.8rem); /* +grand pour les noms (Premiere Pro, etc.) */
+  letter-spacing: .2px;
+}
+.page-about .skill-desc{
+  font-size: clamp(1rem, 1.9vw, 1.15rem);   /* descriptif un peu plus grand aussi */
+  line-height: 1.6;
+  color: rgba(255,255,255,.92);
+}
+
+/* (optionnel) si tu veux donner un poil plus de présence à l’icône */
+.page-about .skill-logo{ width:64px; height:64px; }
+
+/* === Agrandir “Matériel” (noms des matériels) — page À propos === */
+.page-about .project-title{
+  font-size: clamp(1.3rem, 2.2vw, 1.75rem); /* titres sous les cartes Matériel */
+  line-height: 1.25;
+}
+
+/* Etiquette en bas des vignettes (Sony A7 IV, etc.) un peu plus lisible */
+.page-about .thumb-label{
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  padding: 14px 16px 16px;
 }
