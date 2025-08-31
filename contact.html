@@ -4,48 +4,21 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact — Portfolio</title>
-
-  <!-- Fonts & styles -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Mini styles locaux (form grid + messages) -->
-  <style>
-    .contact-wrap{display:grid;grid-template-columns:1.12fr .88fr;gap:28px}
-    .contact-card{background:#fff;border:1px solid #eee;border-radius:16px;box-shadow:var(--shadow);padding:18px}
-    .contact-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-    .contact-list li{display:flex;gap:10px;align-items:center}
-    .contact-list a{color:var(--accent);}
-    form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    form .row-1{grid-template-columns:1fr}
-    label{font-weight:600;display:block;margin:8px 0 6px}
-    input, textarea{
-      width:100%; padding:.8rem 1rem; border:1px solid #e3e5ee; border-radius:12px;
-      background:#fff; font:16px/1.5 Poppins, system-ui;
-    }
-    textarea{min-height:140px; resize:vertical}
-    .form-actions{display:flex;gap:12px;align-items:center;margin-top:12px}
-    .note{font-size:.9rem;color:var(--muted)}
-    .ok{color:#0a7d28;font-weight:600}
-    .err{color:#b00020;font-weight:600}
-    @media (max-width:900px){ .contact-wrap{grid-template-columns:1fr} }
-  </style>
   <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="assets/favicon/favicon-32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="assets/favicon/favicon-16.png" sizes="16x16" type="image/png">
-<link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
-<meta name="theme-color" content="#111827">
+  <link rel="icon" href="assets/favicon/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="assets/favicon/favicon-16.png" sizes="16x16" type="image/png">
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+  <meta name="theme-color" content="#111827">
 </head>
 <body>
-  <!-- Header -->
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="index.html"><span class="brand-mark">JR</span><span class="brand-name">Portfolio</span></a>
-
       <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
         <span class="bar"></span><span class="bar"></span><span class="bar"></span>
       </button>
-
       <nav class="site-nav" aria-label="Navigation principale">
         <ul>
           <li><a href="index.html">Accueil</a></li>
@@ -57,22 +30,20 @@
     </div>
   </header>
 
-  <!-- Main -->
   <main class="section">
     <div class="container">
       <h1 class="section-title">Contact</h1>
       <p class="muted reveal">Une idée, un projet, une collaboration ? Écris-moi.</p>
 
       <div class="contact-wrap">
-        <!-- Formulaire (Netlify Forms) -->
         <section class="contact-card reveal">
           <h2 style="margin-top:0">Écris-moi</h2>
 
-          <form name="contact" id="contact-form"
-                method="POST" data-netlify="true" netlify-honeypot="bot-field">
-            <!-- requis par Netlify -->
+          <!-- Netlify Forms -->
+          <form name="contact" id="contact-form" method="POST"
+                data-netlify="true" netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="contact">
-            <input type="text" name="bot-field" style="display:none">
+            <input type="text"   name="bot-field" style="display:none">
 
             <div class="row">
               <div>
@@ -111,90 +82,44 @@
           </form>
         </section>
 
-        <!-- Infos -->
         <aside class="contact-card reveal">
           <h2 style="margin-top:0">Coordonnées</h2>
           <ul class="contact-list">
             <li>📧 <a href="mailto:julianrivera.81500@gmail.com">julianrivera.81500@gmail.com</a></li>
             <li>📞 <a href="tel:+33659854406">+33 6 59 85 44 06</a></li>
             <li>📍 Toulouse, France</li>
-
-            <!-- Réseaux sociaux (icônes alignées) -->
             <li class="contact-socials">
-              <a href="https://www.instagram.com/julian.rvr_" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">
-                <img src="assets/icones/instagram.png" alt="Instagram">
-              </a>
-              <a href="https://www.youtube.com/@julian.rivera31" target="_blank" rel="noopener" class="social-icon" aria-label="YouTube">
-                <img src="assets/icones/youtube.png" alt="YouTube">
-              </a>
-              <a href="https://www.linkedin.com/in/julian-rivera-30410a1a9/" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn">
-                <img src="assets/icones/linkedin.png" alt="LinkedIn">
-              </a>
+              <a href="https://www.instagram.com/julian.rvr_" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram"><img src="assets/icones/instagram.png" alt="Instagram"></a>
+              <a href="https://www.youtube.com/@julian.rivera31" target="_blank" rel="noopener" class="social-icon" aria-label="YouTube"><img src="assets/icones/youtube.png" alt="YouTube"></a>
+              <a href="https://www.linkedin.com/in/julian-rivera-30410a1a9/" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn"><img src="assets/icones/linkedin.png" alt="LinkedIn"></a>
             </li>
           </ul>
-          <p class="note" style="margin-top:12px">Réponse sous 24–48h.</p>
+          <p class="note" style="margin-top:12px">Réponse sous 24–48 h.</p>
         </aside>
       </div>
     </div>
   </main>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>
         <a class="brand" href="index.html"><span class="brand-mark">JR</span><span class="brand-name">Portfolio</span></a>
         <p class="muted small">© <span id="year"></span> Tous droits réservés.</p>
       </div>
-
       <ul class="socials">
-        <li><a href="https://www.instagram.com/julian.rvr_" target="_blank" rel="noopener" aria-label="Instagram">
-          <img src="assets/icones/instagram.png" alt="Instagram">
-        </a></li>
-        <li><a href="https://www.youtube.com/@julian.rivera31" target="_blank" rel="noopener" aria-label="YouTube">
-          <img src="assets/icones/youtube.png" alt="YouTube">
-        </a></li>
-        <li><a href="https://www.linkedin.com/in/julian-rivera-30410a1a9/" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <img src="assets/icones/linkedin.png" alt="LinkedIn">
-        </a></li>
+        <li><a href="https://www.instagram.com/julian.rvr_" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/icones/instagram.png" alt="Instagram"></a></li>
+        <li><a href="https://www.youtube.com/@julian.rivera31" target="_blank" rel="noopener" aria-label="YouTube"><img src="assets/icones/youtube.png" alt="YouTube"></a></li>
+        <li><a href="https://www.linkedin.com/in/julian-rivera-30410a1a9/" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/icones/linkedin.png" alt="LinkedIn"></a></li>
       </ul>
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script src="script.js"></script>
   <script>
-    // Soumission "inline" pour afficher l'état sans recharger la page
+    // Feedback minimal côté client (facultatif)
     const form = document.getElementById('contact-form');
     const statusEl = document.getElementById('form-status');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      statusEl.textContent = "Envoi en cours…";
-      statusEl.className = "note";
-      try {
-        await fetch("/", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams(new FormData(form)).toString()
-        });
-        statusEl.textContent = "Message envoyé, merci !";
-        statusEl.className = "note ok";
-        form.reset();
-      } catch (err) {
-        console.error(err);
-        statusEl.textContent = "Une erreur est survenue. Réessayez ou contactez-moi par email.";
-        statusEl.className = "note err";
-      }
-    });
+    form?.addEventListener('submit', () => { statusEl.textContent = "Envoi…"; });
   </script>
-
-  <!-- (Optionnel) Form “fantôme” pour aider Netlify à le détecter au build
-       — utile si la page Contact n’est pas toujours incluse dans la preview -->
-  <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
-    <input type="hidden" name="form-name" value="contact">
-    <input type="text" name="name">
-    <input type="email" name="email">
-    <textarea name="message"></textarea>
-  </form>
 </body>
 </html>

@@ -4,13 +4,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>À propos — Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+  <!-- Polices -->
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles globaux -->
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Favicon -->
   <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="assets/favicon/favicon-32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="assets/favicon/favicon-16.png" sizes="16x16" type="image/png">
-<link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
-<meta name="theme-color" content="#111827">
+  <link rel="icon" href="assets/favicon/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="assets/favicon/favicon-16.png" sizes="16x16" type="image/png">
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+  <meta name="theme-color" content="#111827">
 </head>
 <body>
   <header class="site-header">
@@ -36,169 +42,121 @@
       <div class="container reveal">
         <h1 class="section-title">À propos</h1>
         <p>
-          Passionné par l’audiovisuel depuis mon adolescence, j’ai commencé par le montage vidéo sur Vegas Pro et 
-          je me suis formé en autodidacte à Premiere Pro, After Effects et DaVinci Resolve.  
-          Équipé d’un Sony A7 IV, je réalise aujourd’hui des aftermovies, clips, reportages et shootings photo.  
-          Je suis curieux, créatif et toujours motivé pour relever de nouveaux défis.
+          Passionné d’audiovisuel depuis longtemps, je réalise aujourd’hui aftermovies, clips, reportages et shootings photo.
+          Curieux et autodidacte, j’aime relever de nouveaux défis et travailler sur des projets ambitieux.
         </p>
       </div>
     </section>
 
-   <!-- COMPÉTENCES -->
-<section class="section">
-  <div class="container reveal">
-    <h2 class="section-title">Compétences</h2>
+    <!-- COMPÉTENCES (une ligne par logiciel, logo → texte qui sort en JS) -->
+    <section class="section skills-section">
+      <div class="container reveal">
+        <h2 class="section-title">Compétences</h2>
 
-    <div class="skills-grid">
-      <!-- Premiere Pro -->
-      <div class="skill-card">
-        <div class="skill-icon">
-          <img src="assets/icones/premierepro.png" alt="Premiere Pro" loading="lazy">
-        </div>
-        <div class="skill-name">Premiere Pro</div>
-        <p class="skill-note">Montage rapide, multicam, proxies, titrage & audio.</p>
+        <ul class="skills-stack">
+          <li class="skill-row" tabindex="0">
+            <span class="skill-logo"><img src="assets/icones/premierepro.png" alt="Premiere Pro"></span>
+            <div class="skill-text">
+              <h3 class="skill-title">Premiere Pro</h3>
+              <p class="skill-desc">Montage, rythme, titrage & audio.</p>
+            </div>
+          </li>
+
+          <li class="skill-row" tabindex="0">
+            <span class="skill-logo"><img src="assets/icones/aftereffect.png" alt="After Effects"></span>
+            <div class="skill-text">
+              <h3 class="skill-title">After Effects</h3>
+              <p class="skill-desc">Motion design, tracking, compositing.</p>
+            </div>
+          </li>
+
+          <li class="skill-row" tabindex="0">
+            <span class="skill-logo"><img src="assets/icones/davinci.png" alt="DaVinci Resolve"></span>
+            <div class="skill-text">
+              <h3 class="skill-title">DaVinci Resolve</h3>
+              <p class="skill-desc">Étalonnage nœuds, qualifiers, tracking.</p>
+            </div>
+          </li>
+
+          <li class="skill-row" tabindex="0">
+            <span class="skill-logo"><img src="assets/icones/photoshop.png" alt="Photoshop"></span>
+            <div class="skill-text">
+              <h3 class="skill-title">Photoshop</h3>
+              <p class="skill-desc">Retouche, masques, compositing.</p>
+            </div>
+          </li>
+
+          <li class="skill-row" tabindex="0">
+            <span class="skill-logo"><img src="assets/icones/lightroom.png" alt="Lightroom"></span>
+            <div class="skill-text">
+              <h3 class="skill-title">Lightroom</h3>
+              <p class="skill-desc">Développement RAW & retouches locales.</p>
+            </div>
+          </li>
+        </ul>
       </div>
+    </section>
 
-      <!-- After Effects -->
-      <div class="skill-card">
-        <div class="skill-icon">
-          <img src="assets/icones/aftereffect.png" alt="After Effects" loading="lazy">
-        </div>
-        <div class="skill-name">After Effects</div>
-        <p class="skill-note">Motion design, tracking, compositing & templates.</p>
-      </div>
-
-      <!-- DaVinci Resolve -->
-      <div class="skill-card">
-        <div class="skill-icon">
-          <img src="assets/icones/davinci.png" alt="DaVinci Resolve" loading="lazy">
-        </div>
-        <div class="skill-name">DaVinci Resolve</div>
-        <p class="skill-note">Étalonnage nœuds, qualifiers, tracking & exports Rec.709.</p>
-      </div>
-
-      <!-- Photoshop -->
-      <div class="skill-card">
-        <div class="skill-icon">
-          <img src="assets/icones/photoshop.png" alt="Photoshop" loading="lazy">
-        </div>
-        <div class="skill-name">Photoshop</div>
-        <p class="skill-note">Retouche, masques, compositing et nettoyage IA.</p>
-      </div>
-
-      <!-- Lightroom -->
-      <div class="skill-card">
-        <div class="skill-icon">
-          <img src="assets/icones/lightroom.png" alt="Lightroom" loading="lazy">
-        </div>
-        <div class="skill-name">Lightroom</div>
-        <p class="skill-note">Développement RAW, retouches locales, presets & exports.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MATÉRIEL -->
-<section class="section">
-  <div class="container reveal">
-    <h2 class="section-title">Matériel</h2>
-    <div class="grid cards equip-grid">
-      <!-- A7 IV -->
-      <article class="card equip-card">
-        <div class="equip-media">
-          <div class="equip-media-inner">
-            <img src="assets/materiel/sony-a7iv.jpg" alt="Sony A7 IV" loading="lazy">
-          </div>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">Sony A7 IV</h3>
-          <p class="card-text">
-            Hybride plein format polyvalent avec excellent autofocus et belles couleurs. Idéal pour aftermovies,
-            clips et reportages dans des conditions changeantes.
-          </p>
-        </div>
-      </article>
-
-      <!-- Tamron 17–28 -->
-      <article class="card equip-card">
-        <div class="equip-media">
-          <div class="equip-media-inner">
-            <img src="assets/materiel/tamron_17_28.jpg" alt="Tamron 17–28mm f/2.8" loading="lazy">
-          </div>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">Tamron 17–28mm f/2.8</h3>
-          <p class="card-text">
-            Grand-angle léger et lumineux pour plans immersifs, scènes de concert et architecture. Parfait sur stabilisateur.
-          </p>
-        </div>
-      </article>
-
-      <!-- Tamron 28–75 -->
-      <article class="card equip-card">
-        <div class="equip-media">
-          <div class="equip-media-inner">
-            <img src="assets/materiel/tamron_28-75.jpg" alt="Tamron 28–75mm f/2.8" loading="lazy">
-          </div>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">Tamron 28–75mm f/2.8</h3>
-          <p class="card-text">
-            Zoom polyvalent du quotidien : portraits, détails et plans généraux. f/2.8 constant pour bokeh et basses lumières.
-          </p>
-        </div>
-      </article>
-
-      <!-- DJI RS3 Mini -->
-      <article class="card equip-card">
-        <div class="equip-media">
-          <div class="equip-media-inner">
-            <img src="assets/materiel/rs3-mini.jpg" alt="DJI Ronin RS3 Mini" loading="lazy">
-          </div>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">DJI Ronin RS3 Mini</h3>
-          <p class="card-text">
-            Stabilisateur compact pour mouvements fluides (suivi, travelling, reveal). Idéal en événementiel et tournages mobiles.
-          </p>
-        </div>
-      </article>
-
-      <!-- Trépied -->
-      <article class="card equip-card">
-        <div class="equip-media">
-          <div class="equip-media-inner">
-            <img src="assets/materiel/trepied.png" alt="Trépied" loading="lazy">
-          </div>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">Trépied</h3>
-          <p class="card-text">
-            Base stable pour interviews, plans fixes, timelapses et hyperlapses. Assure une image propre et reproductible.
-          </p>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-    <!-- EXPÉRIENCES -->
+    <!-- MATÉRIEL : même format/dimensions/effet que les albums -->
     <section class="section">
       <div class="container reveal">
-        <h2 class="section-title">Expériences</h2>
-        <div class="grid cards">
-          <article class="card">
-            <div class="card-body">
-              <h3 class="card-title">Stage — BL Motion</h3>
-              <p class="card-text">Participation à la réalisation d’aftermovies et vidéos promotionnelles : dérushage, montage, sound design, étalonnage.</p>
+        <h2 class="section-title">Matériel</h2>
+
+        <div class="projects-grid">
+          <div class="project-item">
+            <div class="project-media square">
+              <img src="assets/materiel/sony-a7iv.jpg" alt="Sony A7 IV">
+              <span class="thumb-label">Sony A7 IV</span>
             </div>
-          </article>
-          <article class="card">
-            <div class="card-body">
-              <h3 class="card-title">Bénévolat — Soirées & concerts</h3>
-              <p class="card-text">Création d’aftermovies et reportages photo pour des événements musicaux.</p>
+            <div class="project-body">
+              <h3 class="project-title">Sony A7 IV</h3>
+              <p class="project-text">Hybride plein format polyvalent.</p>
             </div>
-          </article>
+          </div>
+
+          <div class="project-item">
+            <div class="project-media square">
+              <img src="assets/materiel/tamron_17_28.jpg" alt="Tamron 17–28mm f/2.8">
+              <span class="thumb-label">Tamron 17–28 mm f/2.8</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Grand-angle lumineux</h3>
+              <p class="project-text">Idéal pour plans immersifs et stabilisateur.</p>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <div class="project-media square">
+              <img src="assets/materiel/tamron_28-75.jpg" alt="Tamron 28–75mm f/2.8">
+              <span class="thumb-label">Tamron 28–75 mm f/2.8</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Zoom polyvalent</h3>
+              <p class="project-text">Portraits, détails et plans généraux.</p>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <div class="project-media square">
+              <img src="assets/materiel/rs3-mini.jpg" alt="DJI Ronin RS3 Mini">
+              <span class="thumb-label">DJI RS3 Mini</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Stabilisateur compact</h3>
+              <p class="project-text">Mouvements fluides et stables.</p>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <div class="project-media square">
+              <img src="assets/materiel/trepied.png" alt="Trépied">
+              <span class="thumb-label">Trépied</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Support stable</h3>
+              <p class="project-text">Interviews, timelapses & hyperlapses.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -210,18 +168,11 @@
         <a class="brand" href="index.html"><span class="brand-mark">JR</span><span class="brand-name">Portfolio</span></a>
         <p class="muted small">© <span id="year"></span> Tous droits réservés.</p>
       </div>
-<ul class="socials">
-  <li><a href="https://www.instagram.com/julian.rvr_" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-    <img src="assets/icones/instagram.png" alt="Instagram">
-  </a></li>
-  <li><a href="https://www.youtube.com/@julian.rivera31" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-    <img src="assets/icones/youtube.png" alt="YouTube">
-  </a></li>
-  <li><a href="https://www.linkedin.com/in/julian-rvr/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-    <img src="assets/icones/linkedin.png" alt="LinkedIn">
-  </a></li>
-</ul>
-
+      <ul class="socials">
+        <li><a href="https://www.instagram.com/julian.rvr_" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/icones/instagram.png" alt="Instagram"></a></li>
+        <li><a href="https://www.youtube.com/@julian.rivera31" target="_blank" rel="noopener" aria-label="YouTube"><img src="assets/icones/youtube.png" alt="YouTube"></a></li>
+        <li><a href="https://www.linkedin.com/in/julian-rivera-30410a1a9/" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/icones/linkedin.png" alt="LinkedIn"></a></li>
+      </ul>
     </div>
   </footer>
 

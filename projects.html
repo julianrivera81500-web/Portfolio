@@ -4,13 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portfolio — Vidéos & Photos</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="assets/favicon/favicon-32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="assets/favicon/favicon-16.png" sizes="16x16" type="image/png">
-<link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
-<meta name="theme-color" content="#111827">
+  <link rel="icon" href="assets/favicon/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="assets/favicon/favicon-16.png" sizes="16x16" type="image/png">
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+  <meta name="theme-color" content="#111827">
 </head>
 <body>
   <header class="site-header">
@@ -31,98 +31,95 @@
   </header>
 
   <main class="container">
+    <!-- HEADER DE SECTION -->
+    <section class="section work">
+      <div class="section-head">
+        <h2 class="work-title">Mes projets récents</h2>
+        <a class="work-link" href="projects.html#all" title="Tous les projets">Projets</a>
+      </div>
+      <p class="muted">Un aperçu de mes vidéos et de mes albums photo.</p>
+    </section>
+
     <!-- SECTION VIDÉOS -->
-<section class="section reveal">
-  <h1 class="section-title">Vidéos</h1>
-  <div class="projects-grid">
+    <section id="all" class="section reveal">
+      <h1 class="section-title">Vidéos</h1>
+      <div class="projects-grid">
 
-    <!-- Vidéo verticale -->
-    <div class="project-item">
-      <div class="project-media">
-        <video src="assets/video1.mp4" class="video-vertical" muted loop controls></video>
-      </div>
-      <div class="project-body">
-        <h3 class="project-title">Aftermovie B2Beat</h3>
-        <p class="project-text">Vidéo d'aftermovie pour @callyope.music tourner au Downtown Factory en bénévolat. Montage réalisé sur Premiere Pro et AfterEffect pour le texte animé</p>
-      </div>
-    </div>
+        <!-- 9:16 -->
+        <div class="project-item">
+          <div class="project-media vertical">
+            <video src="assets/video1.mp4" class="video-vertical" muted loop controls></video>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Aftermovie B2Beat</h3>
+            <p class="project-text">Afternoon @ Downtown Factory – montage + motion.</p>
+          </div>
+        </div>
 
-    <!-- Vidéo verticale supplémentaire -->
-    <div class="project-item">
-      <div class="project-media">
-        <video src="assets/video3.mp4" class="video-vertical" muted loop controls></video>
-      </div>
-      <div class="project-body">
-        <h3 class="project-title">Hyperlapse Toulouse</h3>
-        <p class="project-text">Hyperlapse réalisé sur le logiciel AfterEffect, Lightroom, et Photoshop. Tout le projet est réalisé à partir de plusieurs prises de photos assemblé et stabilisé. L'IA de Photoshop a été aussi utilisé.</p>
-      </div>
-    </div>
+        <!-- 9:16 -->
+        <div class="project-item">
+          <div class="project-media vertical">
+            <video src="assets/video3.mp4" class="video-vertical" muted loop controls></video>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Hyperlapse Toulouse</h3>
+            <p class="project-text">Assemblage photos + stabilisation, FX légers.</p>
+          </div>
+        </div>
 
-    <!-- Vidéo horizontale -->
-    <div class="project-item">
-      <div class="project-media">
-        <video src="assets/video2.mp4" class="video-vertical" muted loop controls></video>
-      </div>
-      <div class="project-body">
-        <h3 class="project-title">Portes Motion</h3>
-        <p class="project-text">Réalisé via AfterEffect.</p>
-      </div>
-    </div>
+        <!-- 9:16 -->
+        <div class="project-item">
+          <div class="project-media vertical">
+            <video src="assets/video2.mp4" class="video-vertical" muted loop controls></video>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Door Motion</h3>
+            <p class="project-text">Expérimentation After Effects.</p>
+          </div>
+        </div>
 
-    <!-- Vidéo horizontale supplémentaire -->
-    <div class="project-item">
-      <div class="project-media">
-        <video src="assets/video4.mp4" class="video-horizontal" muted loop controls></video>
-      </div>
-      <div class="project-body">
-        <h3 class="project-title">Asia RoadTrip</h3>
-        <p class="project-text">Montage vidéo de mon voyage en Asie, monté avec Davinci Resolve. Cela m'a permit d'apprendre la colorimétrie et le sound design</p>
-      </div>
-    </div>
+        <!-- 16:9 -->
+        <div class="project-item xl">
+          <div class="project-media horizontal">
+            <video src="assets/video4.mp4" class="video-horizontal" muted loop controls></video>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Asia RoadTrip</h3>
+            <p class="project-text">Montage voyage – colorimétrie + sound design.</p>
+          </div>
+        </div>
 
-  </div>
-</section>
-
-<!-- SECTION PHOTOS -->
-<section class="section reveal">
-  <h1 class="section-title">Albums Photos</h1>
-  <div class="projects-grid">
-    
-    <!-- Album Soirée / Concert -->
-    <div class="project-item">
-      <a href="soiree_concert.html" class="project-media">
-        <img src="assets/album-soiree_concert.jpg" alt="Album album-soiree_concert">
-      </a>
-      <div class="project-body">
-        <h3 class="project-title"><a href="soiree_concert.html">Soirée / Concert</a></h3>
-        <p class="project-text">Explorations urbaines et ambiances sombres.</p>
       </div>
-    </div>
+    </section>
 
-    <!-- Album Voyage -->
-    <div class="project-item">
-      <a href="voyage.html" class="project-media">
-        <img src="assets/album-voyage.jpg" alt="Album Voyage">
-      </a>
-      <div class="project-body">
-        <h3 class="project-title"><a href="voyage.html">Voyage</a></h3>
-        <p class="project-text">Paysages, rencontres et découvertes culturelles.</p>
+    <!-- SECTION PHOTOS -->
+    <section class="section reveal">
+      <h1 class="section-title">Albums Photos</h1>
+      <div class="projects-grid">
+
+        <div class="project-item">
+          <a href="soiree_concert.html" class="project-media square">
+            <img src="assets/album-soiree_concert.jpg" alt="Album Soirée / Concert">
+            <span class="thumb-label">Soirée / Concert</span>
+          </a>
+        </div>
+
+        <div class="project-item">
+          <a href="voyage.html" class="project-media square">
+            <img src="assets/album-voyage.jpg" alt="Album Voyage">
+            <span class="thumb-label">Voyage</span>
+          </a>
+        </div>
+
+        <div class="project-item">
+          <a href="shooting.html" class="project-media square">
+            <img src="assets/album-shooting.jpg" alt="Album Shooting">
+            <span class="thumb-label">Shooting</span>
+          </a>
+        </div>
+
       </div>
-    </div>
-
-    <!-- Album Shooting -->
-    <div class="project-item">
-      <a href="shooting.html" class="project-media">
-        <img src="assets/album-shooting.jpg" alt="Album Shooting">
-      </a>
-      <div class="project-body">
-        <h3 class="project-title"><a href="shooting.html">Shooting</a></h3>
-        <p class="project-text">Portraits créatifs et collaborations mode.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -131,17 +128,11 @@
         <a class="brand" href="index.html"><span class="brand-mark">JR</span><span class="brand-name">Portfolio</span></a>
         <p class="muted small">© <span id="year"></span> Tous droits réservés.</p>
       </div>
-<ul class="socials">
-  <li><a href="https://www.instagram.com/julian.rvr_" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-    <img src="assets/icones/instagram.png" alt="Instagram">
-  </a></li>
-  <li><a href="https://www.youtube.com/@julian.rivera31" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-    <img src="assets/icones/youtube.png" alt="YouTube">
-  </a></li>
-  <li><a href="https://www.linkedin.com/in/julian-rvr/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-    <img src="assets/icones/linkedin.png" alt="LinkedIn">
-  </a></li>
-</ul>
+      <ul class="socials">
+        <li><a href="https://www.instagram.com/julian.rvr_" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/icones/instagram.png" alt="Instagram"></a></li>
+        <li><a href="https://www.youtube.com/@julian.rivera31" target="_blank" rel="noopener" aria-label="YouTube"><img src="assets/icones/youtube.png" alt="YouTube"></a></li>
+        <li><a href="https://www.linkedin.com/in/julian-rivera-30410a1a9/" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/icones/linkedin.png" alt="LinkedIn"></a></li>
+      </ul>
     </div>
   </footer>
 
